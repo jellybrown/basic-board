@@ -1,6 +1,6 @@
 import React from 'react';
 import List from './components/List/List';
-import GlobalStyles from './components/styles/globalStyles';
+import GlobalStyles from './styles/globalStyles';
 
 const App = () => {
     return <>

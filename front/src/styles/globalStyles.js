@@ -4,8 +4,9 @@ const GlobalStyles = createGlobalStyle`
     html,body {
         padding:0;
         margin:0;
+        font-family: 'Noto Sans KR', sans-serif;
     }
-    ul {
+    ul,p {
         margin: 0;
         padding: 0;
     }

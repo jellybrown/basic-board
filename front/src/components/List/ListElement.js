@@ -47,6 +47,7 @@ export const TitleAndDay = styled.div`
     span {
         color: #A6A6A6;
         font-size: 12px;
+        line-height: 12px;
     }
 `;
 

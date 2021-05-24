@@ -16,6 +16,6 @@ const GlobalStyles = createGlobalStyle`
     a {
         color:#000;
     }
-`
+`;
 
 export default GlobalStyles;

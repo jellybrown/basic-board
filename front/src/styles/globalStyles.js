@@ -16,6 +16,12 @@ const GlobalStyles = createGlobalStyle`
     a {
         color:#000;
     }
+    h1,h2 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin:0;
+        padding:0;
+    }
 `;
 
 export default GlobalStyles;

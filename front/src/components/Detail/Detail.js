@@ -15,12 +15,12 @@ const Detail = () => {
       <Header>
         <h1>제목입니다</h1>
         <More>
-          <img src={MoreIcon} alt="more icon" />
+          <img src={MoreIcon} alt="more" />
           <Modal />
         </More>
       </Header>
       <Info>
-        <img src={UserIcon} alt="user icon" />
+        <img src={UserIcon} alt="user" />
         <span className="author">YJ</span>
         <span className="date">10.30</span>
       </Info>

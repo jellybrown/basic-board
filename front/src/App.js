@@ -1,16 +1,18 @@
 import React from "react";
-import Detail from "./components/Detail/Detail";
-import Form from "./components/Form/Form";
-import List from "./components/List/List";
-import GlobalStyles from "./styles/globalStyles";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Home from "./pages/home";
+import Write from "./pages/write";
 
 const App = () => {
   return (
     <>
-      <GlobalStyles />
-      {/* <List /> */}
-      {/* <Detail /> */}
-      <Form />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/write" component={Write} />
+        </Switch>
+      </Router>
     </>
   );
 };

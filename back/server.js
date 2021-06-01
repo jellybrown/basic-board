@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const { postRouter } = require("./routes/postRoute");
 dotenv.config();
-//const { boardRouter } = require("./routes");
 
 const server = async () => {
   try {
@@ -17,7 +17,7 @@ const server = async () => {
     console.log("mongoDB connected...");
     app.use(express.json());
 
-    // app.use("/board", boardRouter);
+    app.use("/post", postRouter);
 
     app.listen(3300, async () => {
       console.log("3300 실행중...");

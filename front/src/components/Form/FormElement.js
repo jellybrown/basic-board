@@ -28,3 +28,8 @@ export const Column = styled.div`
 export const Content = styled.div`
   flex: 1;
 `;
+
+export const ButtonWrapper = styled.div`
+  text-align: center;
+  margin-top: 2rem;
+`;

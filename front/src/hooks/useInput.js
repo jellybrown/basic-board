@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-const useInput = (text) => {
-  const [input, setInput] = useState(null);
+const useInput = (initialValue = null) => {
+  const [input, setInput] = useState(initialValue);
 
-  useEffect(() => {
-    setInput(text);
-  }, [text]);
+  const onChangeValue = (e) => {
+    setInput(e.target.value);
+  };
 
-  return [input, setInput];
+  return [input, onChangeValue, setInput];
 };
 
 export default useInput;

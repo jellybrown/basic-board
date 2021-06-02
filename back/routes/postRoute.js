@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { Post } = require("../models/post");
 const postRouter = Router();
 
-// GET post
+// GET api/post
 postRouter.get("/", async (req, res) => {
   try {
     let posts = await Post.find({});
@@ -13,7 +13,7 @@ postRouter.get("/", async (req, res) => {
   }
 });
 
-// POST post
+// POST api/post
 postRouter.post("/", async (req, res) => {
   try {
     console.log(req.body);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   InfoBox,
   Item,
@@ -10,35 +10,25 @@ import {
   TitleAndDay,
 } from "./ListElement";
 
-const ListItem = ({ post }) => {
-  return (
-    <Item>
-      <InfoBox>
-        <TitleAndDay>
-          <p>{post.title}</p>
-          <span>2020.10.10</span>
-        </TitleAndDay>
-        <Tags>
-          <Tag># 문의</Tag>
-          <Tag># 아무말</Tag>
-        </Tags>
-      </InfoBox>
-      <Name>{post.author}</Name>
-    </Item>
-  );
-};
-
-const List = () => {
-  const posts = [
-    { id: 1, title: "hello", author: "yujin" },
-    { id: 2, title: "안농", author: "뀨잉" },
-  ];
-
+const List = ({ posts }) => {
+  // posts.reverse().map((post) => console.log(post));
   return (
     <ListWrapper>
       <Lists>
         {posts.map((post) => (
-          <ListItem key={post.id} post={post} />
+          <Item key={post._id}>
+            <InfoBox>
+              <TitleAndDay>
+                <p>{post.title}</p>
+                <span>{post.createdAt}</span>
+              </TitleAndDay>
+              <Tags>
+                <Tag># 문의</Tag>
+                <Tag># 아무말</Tag>
+              </Tags>
+            </InfoBox>
+            <Name>{post.author}</Name>
+          </Item>
         ))}
       </Lists>
     </ListWrapper>

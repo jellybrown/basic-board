@@ -11,6 +11,7 @@ import {
 } from "./FormElement";
 import axios from "axios";
 import useInput from "../../hooks/useInput";
+import { addPost } from "../../redux/PostsSlice";
 
 const Form = () => {
   const [userName, onChangeName, setUserName] = useInput();
@@ -23,7 +24,7 @@ const Form = () => {
   const [error, setError] = useState(false);
 
   const onUpload = () => {
-    const body = {
+    const payload = {
       user: {
         name: userName,
         email: userEmail,
@@ -32,15 +33,9 @@ const Form = () => {
       title,
       content,
     };
-    console.log(body);
-    axios
-      .post("/api/post", body)
-      .then(() => {
-        setDone(true);
-      })
-      .catch(() => {
-        setError(true);
-      });
+    console.log(payload);
+
+    addPost(payload);
   };
 
   return (

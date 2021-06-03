@@ -6,6 +6,7 @@ const postRouter = Router();
 postRouter.get("/", async (req, res) => {
   try {
     let posts = await Post.find({});
+    posts = posts.reverse();
     return res.send({ posts });
   } catch (err) {
     console.log(err);

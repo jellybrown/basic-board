@@ -13,6 +13,7 @@ const Home = () => {
     dispatch(loadPosts());
     console.log(posts);
   }, []);
+
   return (
     <>
       <List posts={posts} />

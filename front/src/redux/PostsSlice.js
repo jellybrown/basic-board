@@ -40,14 +40,13 @@ export const postsSlice = createSlice({
       state.loading = false;
       state.error = payload;
     },
-
     [addPost.pending]: (state, action) => {
       state.loading = true;
     },
     [addPost.fulfilled]: (state, { payload }) => {
       console.log(payload);
       state.loading = false;
-      state.posts.shift(...payload.data);
+      state.posts.push(...payload.data.post);
       console.log("성공");
     },
     [addPost.rejected]: (state, { payload }) => {

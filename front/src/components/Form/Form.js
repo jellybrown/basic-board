@@ -8,12 +8,18 @@ import {
   Row,
   Title,
   ColumnWrapper,
+  DoneMessage,
+  Done,
 } from "./FormElement";
 import axios from "axios";
 import useInput from "../../hooks/useInput";
 import { addPost } from "../../redux/PostsSlice";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const Form = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [userName, onChangeName, setUserName] = useInput();
   const [userEmail, onChangeEmail, setUserEmail] = useInput();
   const [password, onChangePw, setPassword] = useInput();
@@ -33,14 +39,20 @@ const Form = () => {
       title,
       content,
     };
-    console.log(payload);
-
-    addPost(payload);
+    dispatch(addPost(payload));
+    setDone(true);
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
   };
 
   return (
     <>
-      {done && <p>게시글 작성이 완료되었습니다.</p>}
+      {done && (
+        <Done>
+          <DoneMessage>게시글 작성이 완료되었습니다.</DoneMessage>
+        </Done>
+      )}
       {!done && (
         <FormWrapper>
           <Row className="field">

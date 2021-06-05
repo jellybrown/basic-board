@@ -6,6 +6,10 @@ export const loadPosts = createAsyncThunk("posts/loadPosts", async () => {
   return axios.get("/api/post");
 });
 
+export const loadPost = createAsyncThunk("posts/loadPost", async (payload) => {
+  return axios.get(`/api/post/${payload}`);
+});
+
 // 사용시 addPost({ 게시물 })
 // addPost를 dipatch 하게되면, 이 함수는 게시물인 payload를 받아서,
 //(필요하다면 가공후) 서버에게 보낸다.(return)
@@ -22,6 +26,7 @@ export const postsSlice = createSlice({
     error: "",
     posts: [],
     postCount: "",
+    currentPost: {},
   },
   reducers: {
     // test1: (state) => (state.value += 1),
@@ -37,6 +42,18 @@ export const postsSlice = createSlice({
       state.posts.push(...payload.data.posts);
     },
     [loadPosts.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [loadPost.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [loadPost.fulfilled]: (state, { payload }) => {
+      console.log(payload);
+      state.loading = false;
+      state.currentPost = payload.data.post;
+    },
+    [loadPost.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

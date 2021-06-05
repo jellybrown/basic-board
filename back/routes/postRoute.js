@@ -1,6 +1,21 @@
 const { Router } = require("express");
 const { Post } = require("../models/post");
+const { isValidObjectId } = require("mongoose");
 const postRouter = Router();
+
+// GET api/post/:postIid
+postRouter.get("/:postId", async (req, res) => {
+  try {
+    const { postId } = req.params;
+    if (!isValidObjectId(postId))
+      return res.status(400).send("포스트를 찾을 수 없습니다.");
+    const post = await Post.findOne({ _id: postId });
+    return res.send({ post });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ err: err.message });
+  }
+});
 
 // GET api/post
 postRouter.get("/", async (req, res) => {

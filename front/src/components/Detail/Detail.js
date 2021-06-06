@@ -9,11 +9,12 @@ import {
 } from "./DetailElement";
 import MoreIcon from "../../images/more.svg";
 import UserIcon from "../../images/user.svg";
-const Detail = () => {
+
+const Detail = ({ post }) => {
   return (
     <DetailWrapper>
       <Header>
-        <h1>제목입니다</h1>
+        <h1>{post.title}</h1>
         <More>
           <img src={MoreIcon} alt="more" />
           <Modal />
@@ -21,14 +22,10 @@ const Detail = () => {
       </Header>
       <Info>
         <img src={UserIcon} alt="user" />
-        <span className="author">YJ</span>
-        <span className="date">10.30</span>
+        <span className="author">{post.user && post.user.name}</span>
+        <span className="date">{post.createdAt}</span>
       </Info>
-      <Content>
-        한글 한글아아아아아ㅏ아아아아안녕 Lorem ipsum dolor sit amet
-        consectetur, adipisicing elit. Suscipit in odit esse adipisci doloribus
-        voluptate error quaerat inventore consectetur! Quia!
-      </Content>
+      <Content>{post.content}</Content>
     </DetailWrapper>
   );
 };

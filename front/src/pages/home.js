@@ -14,12 +14,21 @@ const Home = () => {
     console.log(posts);
   }, []);
 
+  const ButtinWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+  `;
+
   return (
     <>
       <List posts={posts} />
-      <Link to="/write">
-        <button>글쓰기</button>
-      </Link>
+      <ButtinWrapper>
+        <Link to="/write">
+          <button className="button is-info">글쓰기</button>
+        </Link>
+      </ButtinWrapper>
     </>
   );
 };

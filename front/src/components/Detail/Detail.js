@@ -9,6 +9,7 @@ import {
 } from "./DetailElement";
 import MoreIcon from "../../images/more.svg";
 import UserIcon from "../../images/user.svg";
+import { changeDate } from "../../utils/date";
 
 const Detail = ({ post }) => {
   return (
@@ -23,7 +24,7 @@ const Detail = ({ post }) => {
       <Info>
         <img src={UserIcon} alt="user" />
         <span className="author">{post.user && post.user.name}</span>
-        <span className="date">{post.createdAt}</span>
+        <span className="date">{changeDate(post.createdAt)}</span>
       </Info>
       <Content>{post.content}</Content>
     </DetailWrapper>

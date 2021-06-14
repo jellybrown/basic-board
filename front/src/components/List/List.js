@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+import { changeDate } from "../../utils/date";
 import {
   InfoBox,
   Item,
@@ -22,7 +23,7 @@ const List = ({ posts }) => {
               <InfoBox>
                 <TitleAndDay>
                   <p>{post.title}</p>
-                  <span>{post.createdAt}</span>
+                  <span>{changeDate(post.createdAt)}</span>
                 </TitleAndDay>
                 <Tags>
                   <Tag># 문의</Tag>

@@ -20,8 +20,12 @@ postRouter.get("/:postId", async (req, res) => {
 // GET api/post
 postRouter.get("/", async (req, res) => {
   try {
-    let posts = await Post.find({});
-    posts = posts.reverse();
+    let { page = 0 } = req.query;
+    page = parseInt(page);
+    let posts = await Post.find({})
+      .sort({ updatedAt: -1 })
+      .skip(page * 5)
+      .limit(5);
     return res.send({ posts });
   } catch (err) {
     console.log(err);

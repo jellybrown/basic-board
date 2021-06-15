@@ -20,13 +20,14 @@ postRouter.get("/:postId", async (req, res) => {
 // GET api/post
 postRouter.get("/", async (req, res) => {
   try {
-    let { page = 0 } = req.query;
+    let { page } = req.query;
     page = parseInt(page);
+    let postsCount = await Post.find({}).countDocuments();
     let posts = await Post.find({})
       .sort({ updatedAt: -1 })
       .skip(page * 5)
       .limit(5);
-    return res.send({ posts });
+    return res.send({ posts, postsCount });
   } catch (err) {
     console.log(err);
     res.status(500).send({ err: err.message });

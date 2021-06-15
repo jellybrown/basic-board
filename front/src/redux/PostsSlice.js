@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const loadPosts = createAsyncThunk("posts/loadPosts", async () => {
-  console.log("load post");
-  return axios.get("/api/post");
-});
+export const loadPosts = createAsyncThunk(
+  "posts/loadPosts",
+  async (payload) => {
+    console.log("load post");
+    return axios.get(`/api/post?page=${payload}`);
+  }
+);
 
 export const loadPost = createAsyncThunk("posts/loadPost", async (payload) => {
   return axios.get(`/api/post/${payload}`);
@@ -25,7 +28,7 @@ export const postsSlice = createSlice({
     loading: false,
     error: "",
     posts: [],
-    postCount: "",
+    postsCount: 0,
     currentPost: {},
   },
   reducers: {
@@ -39,7 +42,8 @@ export const postsSlice = createSlice({
     [loadPosts.fulfilled]: (state, { payload }) => {
       console.log(payload);
       state.loading = false;
-      state.posts.push(...payload.data.posts);
+      state.posts = payload.data.posts;
+      state.postsCount = payload.data.postsCount;
     },
     [loadPosts.rejected]: (state, { payload }) => {
       state.loading = false;

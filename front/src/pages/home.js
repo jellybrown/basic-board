@@ -4,13 +4,19 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loadPosts } from "../redux/PostsSlice";
+import { useState } from "react";
 
 const Home = () => {
+  const page = location.search;
+  const regex = /([0-9]+)/g;
+  const result = page.match(regex) || [0];
+  console.log(result[0]);
   const posts = useSelector((state) => state.posts.posts);
+  const postsCount = useSelector((state) => state.posts.postsCount);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadPosts());
+    dispatch(loadPosts(result[0]));
     console.log(posts);
   }, []);
 

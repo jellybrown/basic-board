@@ -12,7 +12,10 @@ export const DoneMessage = styled.p`
   text-align: center;
 `;
 
-export const FormWrapper = styled.div``;
+export const FormWrapper = styled.div`
+  max-width: 800px;
+  margin: 50px auto;
+`;
 
 export const Row = styled.div`
   display: flex;

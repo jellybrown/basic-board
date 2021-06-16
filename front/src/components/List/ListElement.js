@@ -69,3 +69,28 @@ export const Name = styled.span`
   color: #a6a6a6;
   font-size: 14px;
 `;
+
+export const Pagination = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+`;
+
+export const PageBackground = styled.div`
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background: ${({ currentPage }) =>
+    currentPage ? "rgba(0,0,0,0.08)" : "none"};
+  border-radius: 5px;
+`;
+
+export const Page = styled.span`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;

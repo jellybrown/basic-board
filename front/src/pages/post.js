@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import Detail from "../components/Detail/Detail";
-import { loadPost } from "../redux/PostsSlice";
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import Detail from '../components/Detail/Detail';
+import { loadPost } from '../redux/PostsSlice';
+import { Loading, LoadingWrapper } from '../styles/styles';
 
 const Post = ({ match }) => {
   const { id } = match.params;
@@ -14,8 +15,17 @@ const Post = ({ match }) => {
     dispatch(loadPost(id));
   }, []);
 
-  // 스켈레톤 효과 추가하기 06.07
-  return <>{!loading && <Detail post={currentPost} />}</>;
+  return (
+    <>
+      {loading ? (
+        <LoadingWrapper>
+          <Loading />
+        </LoadingWrapper>
+      ) : (
+        <Detail post={currentPost} />
+      )}
+    </>
+  );
 };
 
 export default Post;

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import List from '../components/List/List';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadPosts } from '../redux/PostsSlice';
+import { ButtonWrapper } from '../components/Form/FormElement';
 
 const Home = () => {
   const page = location.search;
@@ -19,21 +19,14 @@ const Home = () => {
     console.log(posts);
   }, [result[0]]);
 
-  const ButtinWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
-  `;
-
   return (
     <>
       <List posts={posts} postsCount={postsCount} />
-      <ButtinWrapper>
+      <ButtonWrapper>
         <Link to="/write">
           <button className="button is-info">글쓰기</button>
         </Link>
-      </ButtinWrapper>
+      </ButtonWrapper>
     </>
   );
 };

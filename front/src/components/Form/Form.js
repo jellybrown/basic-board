@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 //import { faUser } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,12 +10,12 @@ import {
   ColumnWrapper,
   DoneMessage,
   Done,
-} from "./FormElement";
-import axios from "axios";
-import useInput from "../../hooks/useInput";
-import { addPost } from "../../redux/PostsSlice";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+} from './FormElement';
+import axios from 'axios';
+import useInput from '../../hooks/useInput';
+import { addPost } from '../../redux/PostsSlice';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const Form = () => {
     dispatch(addPost(payload));
     setDone(true);
     setTimeout(() => {
-      history.push("/");
+      history.push('/');
     }, 1000);
   };
 

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DetailWrapper = styled.section`
   max-width: 600px;
@@ -21,13 +21,12 @@ export const Header = styled.div`
 `;
 
 export const More = styled.div`
+  position: relative;
   img {
     width: 15px;
     cursor: pointer;
   }
 `;
-
-export const Modal = styled.div``;
 
 export const Info = styled.div`
   margin-bottom: 2rem;

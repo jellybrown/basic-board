@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-const useModal = (initialState = false) => {
+const useModal = (isMore, initialState = false) => {
   const [opened, setOpened] = useState(initialState);
 
+  // more 컴포넌트에서만 캡쳐링 사용
   useEffect(() => {
+    if (!isMore) return;
     const listener = (e) => {
       if (
         e.target.className === 'custom-modal' ||
@@ -26,7 +28,15 @@ const useModal = (initialState = false) => {
     setOpened((prev) => !prev);
   };
 
-  return [opened, onToggleModal];
+  const onOepnModal = () => {
+    setOpened(true);
+  };
+
+  const onCloseModal = () => {
+    setOpened(false);
+  };
+
+  return [opened, onToggleModal, onOepnModal, onCloseModal];
 };
 
 export default useModal;

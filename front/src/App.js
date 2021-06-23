@@ -1,8 +1,8 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Post from "./pages/post";
-import Home from "./pages/home";
-import Write from "./pages/write";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Post from './pages/post';
+import Home from './pages/home';
+import Write from './pages/write';
 
 const App = () => {
   return (
@@ -12,6 +12,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/post/:id" component={Post} />
           <Route path="/write" component={Write} />
+          <Route path="/post/edit/:id" component={Write} />
         </Switch>
       </Router>
     </>

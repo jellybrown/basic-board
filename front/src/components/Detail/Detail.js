@@ -7,21 +7,36 @@ import Modal from '../Modal/Modal';
 import useModal from '../../hooks/useModal';
 import Confirm from '../Confirm/Confirm';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Detail = ({ post }) => {
   const [opened, onToggleModal] = useModal(true);
   const [openedConfirm, _, onOpenConfirm, onCloseConfirm] = useModal(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const history = useHistory();
 
   const onEdit = () => {
+    setIsEdit(true);
     onToggleModal();
     onOpenConfirm();
   };
 
+  const requireEdit = () => {
+    history.push(`/post/edit/${post._id}`);
+  };
+
+  const requireDelete = () => {
+    console.log('삭제 예정');
+  };
+
   const onCheckPassword = (value) => {
     console.log(value, post);
-    if (post.password !== value) setPasswordError(true);
-    else console.log('비밀번호 ㅇㅇ'); // push하기
+    if (post.password !== value) return setPasswordError(true);
+    if (isEdit) requireEdit();
+    else requireDelete();
+
+    //else console.log('비밀번호 ㅇㅇ'); // push하기
   };
 
   return (

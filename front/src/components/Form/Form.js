@@ -13,18 +13,28 @@ import {
 } from './FormElement';
 import axios from 'axios';
 import useInput from '../../hooks/useInput';
-import { addPost } from '../../redux/PostsSlice';
+import { addPost, editPost } from '../../redux/PostsSlice';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 const Form = ({ prevContent }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const [userName, onChangeName, setUserName] = useInput();
-  const [userEmail, onChangeEmail, setUserEmail] = useInput();
-  const [password, onChangePw, setPassword] = useInput();
-  const [title, onChangeTitle, setTitle] = useInput();
-  const [content, onChangeContent, setContent] = useInput();
+  const [userName, onChangeName, setUserName] = useInput(
+    prevContent ? prevContent.user.name : null
+  );
+  const [userEmail, onChangeEmail, setUserEmail] = useInput(
+    prevContent ? prevContent.user.email : null
+  );
+  const [password, onChangePw, setPassword] = useInput(
+    prevContent ? prevContent.password : null
+  );
+  const [title, onChangeTitle, setTitle] = useInput(
+    prevContent ? prevContent.title : null
+  );
+  const [content, onChangeContent, setContent] = useInput(
+    prevContent ? prevContent.content : null
+  );
 
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
@@ -39,7 +49,10 @@ const Form = ({ prevContent }) => {
       title,
       content,
     };
-    dispatch(addPost(payload));
+
+    if (!prevContent) dispatch(addPost(payload));
+    else dispatch(editPost(payload));
+
     setDone(true);
     setTimeout(() => {
       history.push('/');
@@ -64,7 +77,7 @@ const Form = ({ prevContent }) => {
             <ColumnWrapper>
               <div className="control">
                 <input
-                  defaultValue={prevContent ? prevContent.userName : userName}
+                  defaultValue={prevContent ? prevContent.user.name : userName}
                   onChange={onChangeName}
                   className="input"
                   type="text"
@@ -73,7 +86,9 @@ const Form = ({ prevContent }) => {
               </div>
               <div className="control">
                 <input
-                  defaultValue={prevContent ? prevContent.userEmail : userEmail}
+                  defaultValue={
+                    prevContent ? prevContent.user.email : userEmail
+                  }
                   onChange={onChangeEmail}
                   className="input"
                   type="email"

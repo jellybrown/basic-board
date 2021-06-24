@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const loadPosts = createAsyncThunk(
@@ -18,6 +18,14 @@ export const addPost = createAsyncThunk('posts/addPost', async (payload) => {
   console.log(payload);
   return axios.post('/api/post', payload);
 });
+
+export const editPost = createAsyncThunk(
+  'post/editPost',
+  async (payload, { getState }) => {
+    const state = getState();
+    return axios.put(`api/post/${state.posts.currentPost._id}`, payload);
+  }
+);
 
 export const postsSlice = createSlice({
   name: 'posts',
@@ -64,6 +72,16 @@ export const postsSlice = createSlice({
       state.posts.push(...payload.data.post);
     },
     [addPost.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [editPost.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [editPost.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [editPost.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

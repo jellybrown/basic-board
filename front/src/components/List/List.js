@@ -1,7 +1,8 @@
-import React from "react";
-import { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { changeDate } from "../../utils/date";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { editCurrentPage } from '../../redux/PostsSlice';
+import { changeDate } from '../../utils/date';
 import {
   InfoBox,
   Item,
@@ -14,18 +15,20 @@ import {
   Pagination,
   Page,
   PageBackground,
-} from "./ListElement";
+} from './ListElement';
 
 const List = ({ posts, postsCount }) => {
   const history = useHistory();
-  const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
+  const { currentPage } = useSelector((state) => state.posts);
+
   // pagination
   const perPostCount = 5;
   const totalPage = Math.ceil(postsCount / perPostCount);
 
   const onClickpage = (number) => {
     history.push(`/?page=${number - 1}`);
-    setCurrentPage(number);
+    dispatch(editCurrentPage(number));
   };
 
   const renderPagination = () => {

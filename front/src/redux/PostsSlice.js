@@ -35,10 +35,13 @@ export const postsSlice = createSlice({
     posts: [],
     postsCount: 0,
     currentPost: {},
+    currentPage: 1,
   },
   reducers: {
-    // test1: (state) => (state.value += 1),
-    // test2: (state) => (state.value -= 1)
+    editCurrentPage: (state, { payload }) => {
+      console.log(payload);
+      state.currentPage = payload;
+    },
   },
   extraReducers: {
     [loadPosts.pending]: (state, action) => {
@@ -88,6 +91,6 @@ export const postsSlice = createSlice({
   },
 });
 
-//export const { test1, test2 } = postSlice.actions;
+export const { editCurrentPage } = postsSlice.actions;
 
 export default postsSlice.reducer;

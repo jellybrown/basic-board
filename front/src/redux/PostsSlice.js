@@ -34,13 +34,16 @@ export const postsSlice = createSlice({
     error: '',
     posts: [],
     postsCount: 0,
-    currentPost: {},
+    currentPost: null,
     currentPage: 1,
   },
   reducers: {
     editCurrentPage: (state, { payload }) => {
       console.log(payload);
       state.currentPage = payload;
+    },
+    removePost: (state) => {
+      state.currentPost = null;
     },
   },
   extraReducers: {
@@ -91,6 +94,6 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { editCurrentPage } = postsSlice.actions;
+export const { editCurrentPage, removePost } = postsSlice.actions;
 
 export default postsSlice.reducer;

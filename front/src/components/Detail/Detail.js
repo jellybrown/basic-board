@@ -40,27 +40,31 @@ const Detail = ({ post }) => {
   };
 
   return (
-    <DetailWrapper>
-      <Header>
-        <h1>{post.title}</h1>
-        <More className="custom-modal" onClick={onToggleModal}>
-          <img src={MoreIcon} className="more-icon" alt="more" />
-          <Modal opened={opened} onEdit={onEdit} />
-        </More>
-        <Confirm
-          opened={openedConfirm}
-          onClose={onCloseConfirm}
-          onCheck={onCheckPassword}
-          error={passwordError}
-        />
-      </Header>
-      <Info>
-        <img src={UserIcon} alt="user" />
-        <span className="author">{post.user && post.user.name}</span>
-        <span className="date">{changeDate(post.createdAt)}</span>
-      </Info>
-      <Content>{post.content}</Content>
-    </DetailWrapper>
+    <>
+      {post && (
+        <DetailWrapper>
+          <Header>
+            <h1>{post.title}</h1>
+            <More className="custom-modal" onClick={onToggleModal}>
+              <img src={MoreIcon} className="more-icon" alt="more" />
+              <Modal opened={opened} onEdit={onEdit} />
+            </More>
+            <Confirm
+              opened={openedConfirm}
+              onClose={onCloseConfirm}
+              onCheck={onCheckPassword}
+              error={passwordError}
+            />
+          </Header>
+          <Info>
+            <img src={UserIcon} alt="user" />
+            <span className="author">{post.user && post.user.name}</span>
+            <span className="date">{changeDate(post.createdAt)}</span>
+          </Info>
+          <Content>{post.content}</Content>
+        </DetailWrapper>
+      )}
+    </>
   );
 };
 

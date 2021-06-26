@@ -1,7 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { editCurrentPage } from '../../redux/PostsSlice';
+import { editCurrentPage, removePost } from '../../redux/PostsSlice';
 import { changeDate } from '../../utils/date';
 import {
   InfoBox,
@@ -21,6 +22,10 @@ const List = ({ posts, postsCount }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { currentPage } = useSelector((state) => state.posts);
+
+  useEffect(() => {
+    dispatch(removePost());
+  }, []);
 
   // pagination
   const perPostCount = 5;

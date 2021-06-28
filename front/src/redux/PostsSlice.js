@@ -27,6 +27,13 @@ export const editPost = createAsyncThunk(
   }
 );
 
+export const deletePost = createAsyncThunk(
+  'posts/deletePost',
+  async (payload) => {
+    return axios.delete(`/api/post/${payload}`);
+  }
+);
+
 export const postsSlice = createSlice({
   name: 'posts',
   initialState: {
@@ -88,6 +95,16 @@ export const postsSlice = createSlice({
       state.loading = false;
     },
     [editPost.rejected]: (state, { payload }) => {
+      state.loading = false;
+      state.error = payload;
+    },
+    [deletePost.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [deletePost.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+    },
+    [deletePost.rejected]: (state, { payload }) => {
       state.loading = false;
       state.error = payload;
     },

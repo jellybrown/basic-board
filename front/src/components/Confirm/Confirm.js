@@ -12,11 +12,14 @@ import {
   InputWrapper,
 } from './ConfirmElement';
 
-const Confirm = ({ opened, onClose, onCheck, error }) => {
-  const [text, onChangeText] = useInput();
+const Confirm = ({ opened, onClose, onCheck, error, setError }) => {
+  const [text, onChangeText, setText] = useInput();
   useEffect(() => {
-    console.log(text);
-  }, [text]);
+    if (!opened) {
+      setText('');
+      setError(false);
+    }
+  }, [opened]);
 
   return (
     <Bg opened={opened}>

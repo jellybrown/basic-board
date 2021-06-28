@@ -62,6 +62,7 @@ const Detail = ({ post }) => {
               onClose={onCloseConfirm}
               onCheck={onCheckPassword}
               error={passwordError}
+              setError={setPasswordError}
             />
           </Header>
           <Info>

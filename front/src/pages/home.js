@@ -13,15 +13,17 @@ const Home = () => {
   const result = page.match(regex) || [0]; // ?page=2 숫자만 꺼내기
   const posts = useSelector((state) => state.posts.posts);
   const postsCount = useSelector((state) => state.posts.postsCount);
+  const { currentPage } = useSelector((state) => state.posts);
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(async () => {
+    // currentPost null 필요, 안그러면 글쓸떄 에러남
     await setLoading(true);
-    await dispatch(loadPosts(result[0]));
+    await dispatch(loadPosts(currentPage - 1));
     await setLoading(false);
-  }, [result[0]]);
+  }, [currentPage]);
 
   return (
     <>

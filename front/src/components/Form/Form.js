@@ -13,7 +13,7 @@ import {
 } from './FormElement';
 import axios from 'axios';
 import useInput from '../../hooks/useInput';
-import { addPost, editPost } from '../../redux/PostsSlice';
+import { addPost, editCurrentPage, editPost } from '../../redux/PostsSlice';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -54,6 +54,7 @@ const Form = ({ prevContent }) => {
     else dispatch(editPost(payload));
 
     setDone(true);
+    dispatch(editCurrentPage(1));
     setTimeout(() => {
       history.push('/');
     }, 1000);

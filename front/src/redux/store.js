@@ -2,8 +2,8 @@ import {
   configureStore,
   combineReducers,
   getDefaultMiddleware,
-} from "@reduxjs/toolkit";
-import postsSlice from "./PostsSlice";
+} from '@reduxjs/toolkit';
+import postsSlice from './PostsSlice';
 
 const reducer = combineReducers({
   posts: postsSlice,
@@ -14,7 +14,7 @@ const store = configureStore({
   middleware: [
     ...getDefaultMiddleware({ thunk: true, serializableCheck: false }),
   ],
-  //devTools: process.env.NODE_ENV === "development",
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 export default store;

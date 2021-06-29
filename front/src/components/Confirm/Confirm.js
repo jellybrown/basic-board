@@ -3,11 +3,9 @@ import { useEffect } from 'react';
 import useInput from '../../hooks/useInput';
 import {
   Bg,
-  Button,
   ConfirmWrapper,
   ButtonWrapper,
   Error,
-  Input,
   Message,
   InputWrapper,
 } from './ConfirmElement';
@@ -28,7 +26,7 @@ const Confirm = ({ opened, onClose, onCheck, error, setError }) => {
           <Message>비밀번호를 입력해주세요.</Message>
           <input
             className="input"
-            type="password"
+            type="text"
             placeholder="****"
             value={text}
             onChange={onChangeText}

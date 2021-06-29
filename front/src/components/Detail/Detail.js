@@ -41,7 +41,6 @@ const Detail = ({ post }) => {
   };
 
   const onCheckPassword = (value) => {
-    console.log(value, post);
     if (post.password !== value) return setPasswordError(true);
     if (isEdit) requireEdit();
     else requireDelete();

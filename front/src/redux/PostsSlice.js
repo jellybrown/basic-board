@@ -4,7 +4,6 @@ import axios from 'axios';
 export const loadPosts = createAsyncThunk(
   'posts/loadPosts',
   async (payload) => {
-    console.log('load post');
     return axios.get(`/api/post?page=${payload}`);
   }
 );
@@ -14,8 +13,6 @@ export const loadPost = createAsyncThunk('posts/loadPost', async (payload) => {
 });
 
 export const addPost = createAsyncThunk('posts/addPost', async (payload) => {
-  console.log('fsdfsdfsdf');
-  console.log(payload);
   return axios.post('/api/post', payload);
 });
 
@@ -46,7 +43,6 @@ export const postsSlice = createSlice({
   },
   reducers: {
     editCurrentPage: (state, { payload }) => {
-      console.log(payload);
       state.currentPage = payload;
     },
     removePost: (state) => {

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-//import { faUser } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   FormWrapper,
   ButtonWrapper,
@@ -11,7 +9,6 @@ import {
   DoneMessage,
   Done,
 } from './FormElement';
-import axios from 'axios';
 import useInput from '../../hooks/useInput';
 import { addPost, editCurrentPage, editPost } from '../../redux/PostsSlice';
 import { useDispatch } from 'react-redux';
@@ -106,7 +103,7 @@ const Form = ({ prevContent }) => {
                 onChange={onChangePw}
                 className="input"
                 type="text"
-                placeholder="게시글 조회시 필요합니다."
+                placeholder="게시글 수정/삭제시 필요합니다."
               />
             </Column>
           </Row>
@@ -144,7 +141,5 @@ const Form = ({ prevContent }) => {
     </>
   );
 };
-
-// <FontAwesomeIcon icon={faUser} className="fauser" />
 
 export default Form;
